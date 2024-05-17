@@ -1,14 +1,29 @@
-const addBtn = document.querySelector('#add-button');
-const modalCancel = document.querySelector('#modal-cancel');
-addBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    const modalFile = document.querySelector('#modal-file');
-    modalFile.classList.remove('hidden');
-});
-modalCancel.addEventListener('click', function(e) {
+const addBtn = document.querySelectorAll('#add-button, #add-file');
+const modalFileCancel = document.querySelector('#modal-file-cancel');
+addBtn.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const modalFile = document.querySelector('#modal-file');
+        modalFile.classList.remove('hidden');
+    });
+})
+modalFileCancel.addEventListener('click', function(e) {
     e.preventDefault();
     const modalFile = document.querySelector('#modal-file');
     modalFile.classList.add('hidden');
+})
+
+const addFeedback = document.querySelector('#add-feedback');
+const modalFeedbackCancel = document.querySelector('#modal-feedback-cancel');
+addFeedback.addEventListener('click', function(e) {
+    e.preventDefault();
+    const modalFeedback = document.querySelector('#modal-feedback');
+    modalFeedback.classList.remove('hidden');
+});
+modalFeedbackCancel.addEventListener('click', function(e) {
+    e.preventDefault();
+    const modalFeedback = document.querySelector('#modal-feedback');
+    modalFeedback.classList.add('hidden');
 })
 
 function tab() {
@@ -34,3 +49,16 @@ function tab() {
     });
 }
 document.addEventListener('DOMContentLoaded', tab);
+
+
+const checkAll = document.getElementById('checkAll');
+if (checkAll) {
+    checkAll.addEventListener('change', function() {
+    var checked = this.checked;
+    var items = document.querySelectorAll('.checkItem');
+    
+    items.forEach(function(item) {
+        item.checked = checked;
+    });
+});
+}

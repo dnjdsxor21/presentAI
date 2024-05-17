@@ -11,28 +11,28 @@
             </a>
         </div>
         <div class="nav-btn mt-20">
-            <a href="{{ url_for('projects' ,project_id=project_id) }}" class="">
+            <a href="{{ url_for('projects' ,project_id=project.id) }}" class="">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
                   </svg>                                     
             </a>
         </div>
         <div class="nav-btn">
-            <a href="{{ url_for('project_ai_outline' ,project_id=project_id) }}">
+            <a href="{{ url_for('project_ai_outline' ,project_id=project.id) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                   </svg>                               
             </a>
         </div>
         <div class="nav-btn">
-            <a href="{{ url_for('project_ai_question' ,project_id=project_id) }}">
+            <a href="{{ url_for('project_ai_question' ,project_id=project.id) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
                   </svg>                                               
             </a>
         </div>
         <div class="nav-btn nav-active">
-            <a href="{{ url_for('project_settings', project_id=project_id) }}">
+            <a href="{{ url_for('project_settings', project_id=project.id) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -58,7 +58,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
             </svg>
-            <p class="text-2xl font-bold">{{project.name}}</p>              
+            <p class="text-2xl font-bold"><a href="{{ url_for('projects' ,project_id=project.id) }}" class="">{{project.name}}</a></p>              
         </div>
         <div class="border rounded-2xl relative px-2 py-3 w-3/5">
             <input type="text" placeholder="Enter something" class="w-full pl-2"/>
@@ -97,10 +97,10 @@
         <div class="bg-white w-[70%] h-[90%] overflow-y-scroll">
             <div class="p-5 flex flex-col gap-5">
                 <div class="text-3xl font-bold text-center pb-5">My project</div>
-                <div class="w-[95%] h-full color-silver border border-black">
+                <div id="data-form" class="w-[95%] h-full color-silver border border-black">
                     <div class="p-2">
                         <div>프로젝트 이름:</div>
-                        <input type="text" required minlength="1" class="w-full p-1 border border-black"
+                        <input type="text" required minlength="1" class="w-full p-1 border border-black cursor-not-allowed" disabled=""
                         value="{{project.name}}"/>
                     </div>
                     <div class="p-2">
@@ -119,11 +119,13 @@
                 </div>
                 
 
-                <div class="flex justify-center items-center">
-                    <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">Edit project</button>
+                <div class="flex justify-evenly items-center">
+                    <button id='edit' class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">Edit project</button>
+                    <button id='delete' class="px-16 py-1 border border-hidden rounded-3xl text-white color-red">Delete project</button>
                 </div>
             </div>
         </div>        
     
 </div>
+<script src="/static/js/data-settings.js"></script>
 {% endblock %}

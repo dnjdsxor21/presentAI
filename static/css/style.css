@@ -11,6 +11,10 @@
     background-color: rgb(170, 205, 14);
 }
 
+.color-red {
+    background-color: rgb(209, 15, 15);
+}
+
 #nav-bar .nav-btn {
     width: 33%;
     border: solid rgb(241 245 249) 0.5px;
@@ -56,4 +60,7 @@ tr td:last-child {
     height:30px;
 }
 
-  
+#ai-questions,
+#ai-outline {
+    transition: opacity 1s ease; /* 투명도 변경 효과 설정 */
+  }

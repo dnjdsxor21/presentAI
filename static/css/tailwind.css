@@ -558,10 +558,40 @@ video {
   display: none;
 }
 
+.w-full {
+  width: 100%;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .border-hidden {
   border-style: hidden;
 }
 
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
 .font-bold {
   font-weight: 700;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.outline {
+  outline-style: solid;
 }
