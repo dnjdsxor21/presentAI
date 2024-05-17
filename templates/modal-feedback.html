@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PresentAI</title>
+    <link href="static/css/style.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="overflow-x-scroll">
+    <nav id="nav-bar" class="fixed color-silver fixed w-32 h-screen z-10">
+        <div class="flex flex-col justify-start items-center gap-6">
+            <div class="nav-btn nav-active mt-20">
+                <a href="#" class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                      </svg>                      
+                </a>
+            </div>
+            <div class="nav-btn">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                      </svg>                      
+                </a>
+            </div>
+            <div class="nav-btn">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                      </svg>
+                      
+                </a>
+            </div>
+            <div class="nav-btn">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                      </svg>                      
+                </a>
+            </div>
+        </div>
+    </div>
+    </nav>
+
+    <div class="ml-40">
+    <header id="header" class="flex flex-nowrap justify-between items-center p-3 w-auto">
+        <div class="flex items-center gap-3 p-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
+              </svg>
+            <p class="text-2xl font-bold">Project1</p>              
+        </div>
+        <div class="border rounded-2xl relative px-2 py-3 w-3/5">
+            <input type="text" placeholder="Enter something" class="w-full pl-2"/>
+            <button class="absolute right-3 top-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex justify-between items-center gap-3">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                  </svg>                  
+            </button>
+            <button class="">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>                  
+            </button>
+            <button class="border rounded-full p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+            </button>
+
+        </div>
+    </header>
+
+    <div class="m-1 font-bold text-xl">Your Workspace</div>
+
+    <div class="m-2 text-l flex items-center justify-between">
+        <div>Material List</div>
+        <div class="flex items-center gap-2.5">
+            <button class="color-green text-white text-center border border-hidden rounded-3xl px-2 py-1">AI RANKING</button>
+            <button class="color-green text-white text-center border border-hidden rounded-3xl px-2 py-1">VIEW</button>
+            <button class="color-green text-white text-center border border-hidden rounded-3xl px-2 py-1">AI RANKING</button>
+        </div>
+    </div>
+    <div class="flex gap-2">
+        <div class="flex flex-col gap-3 h-full">
+            <table>
+                <tr>
+                    <th><input type="checkbox" name="check"/></th>
+                    <th>Materials Name</th>
+                    <th>Materials Link</th>
+                    <th>Tags</th>
+                    <th>Importance</th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check"/></td>
+                    <td>Materials Name</td>
+                    <td>Materials Link</td>
+                    <td>Tags</td>
+                    <td><input type="range" name="importance" min="0" max="100" value="100"/><span> 100%</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check"/></td>
+                    <td>Materials Name</td>
+                    <td>Materials Link</td>
+                    <td>Tags</td>
+                    <td><input type="range" name="importance" min="0" max="100" value="80"/><span> 80%</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check"/></td>
+                    <td>Materials Name</td>
+                    <td>Materials Link</td>
+                    <td>Tags</td>
+                    <td><input type="range" name="importance" min="0" max="100"/><span> 50%</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5"><button class="w-full h-full color-silver">+</button></td>
+                </tr>
+            </table>
+            <div class="bg-black h-0.5"></div>
+            <p class="">Scripts</p>
+            <table class="">
+                <tr>
+                    <th>Script Name</th>
+                    <th>Predicted Questions</th>
+                </tr>
+                <tr>
+                    <td>Script Name</td>
+                    <td><button class="py-1 px-2 border border-hidden color-green rounded-3xl text-white">Predicted Questions</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="w-full h-full color-silver">+</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="flex flex-col gap-2 h-full">
+            <div class="flex flex-col gap-2 p-2 border border-slate-100 rounded-xl">
+                <div class="text-xl font-bold">Filter</div>
+                <div class="text-l">File Type</div>
+                <div><input type="checkbox" name="check"/> Document</div>
+                <div><input type="checkbox" name="check"/> Photo</div>
+                <div><input type="checkbox" name="check"/> Music</div>
+            </div>
+            <button class="color-green text-white text-center text-xl border border-hidden rounded-2xl px-2 py-1">AI Outline Generator</button>
+            <button class="color-green text-white text-center text-xl border border-hidden rounded-2xl px-2 py-1">AI Question Generator</button>
+        </div>
+    </div>
+   
+    <div class="h-30 p-2">
+        Copyright ARAR
+    </div>
+
+
+    </div>
+
+    <modal id="modal-feedback" class="color-backdrop w-screen h-svh absolute top-0 left-0 z-20 flex justify-center items-center">
+        <div class="bg-white w-[60%] h-[90%] overflow-y-scroll">
+            <div class="flex justify-end">
+                <button class="p-1 text-gray-500">X</button>
+            </div>
+            <div class="p-5 flex flex-col gap-5">
+                <div class="text-3xl font-bold text-center pb-5">Feedback your finished Project</div>
+                <div class="flex p-2 gap-5">
+                    <div class="font-bold w-40">Describe project</div>
+                    <div>Project2<br>Topic:~~~</div>
+                </div>
+                <div class="flex p-2 gap-5">
+                    <div class="font-bold w-40">Overall Satisfaction</div>
+                    <div class="star-rating w-40">
+                        <span class="star text-gray-400">&#9733;</span>
+                        <span class="star text-gray-400">&#9733;</span>
+                        <span class="star text-gray-400">&#9733;</span>
+                        <span class="star text-gray-400">&#9733;</span>
+                        <span class="star text-gray-400">&#9733;</span>
+                      </div>                      
+                </div>
+
+                <div>
+                    <div class="p-2 font-bold">Learned from experience</div>
+                    <div class="p-2">
+                        <p class="p-2">Q1 힘들었던 점이 있다면 무엇이었나요?</p>
+                        <textarea type="text" placeholder="type" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    </div>
+                    <div class="p-2">
+                        <p class="p-2">Q2 좋았던 점이 있다면 무엇이었나요?</p>
+                        <textarea type="text" placeholder="type" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    </div>
+                    <div class="p-2">
+                        <p class="p-2">Q3 새롭게 배운 점이 있다면 무엇이었나요?</p>
+                        <textarea type="text" placeholder="type" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center">
+                    <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">Submit feedback</button>
+                </div>
+            </div>
+        </div>        
+    </modal>
+</body>
+</html>
