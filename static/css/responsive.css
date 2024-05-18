@@ -1,0 +1,15 @@
+@media screen and (max-width:768px){
+	#nav-bar {
+        width:6rem;
+    }
+    #nav-bar .nav-btn {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 9999px;
+        padding:0.5px;
+    }
+    #footer-copyright {
+        opacity: 0;
+    }
+    
+}/*max-width:768px*/

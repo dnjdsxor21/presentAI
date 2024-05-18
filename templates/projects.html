@@ -17,7 +17,7 @@
                     </svg>                      
             </a>
         </div>
-        <div class="nav-btn">
+        <!-- <div class="nav-btn">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
@@ -38,7 +38,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
                     </svg>                      
             </a>
-        </div>
+        </div> -->
     </div>
 </div>
     </nav>
@@ -132,8 +132,8 @@
             <div class="flex flex-col gap-4 justify-start items-center color-silver px-2 py-8 min-h-[26rem]">
                 {% for project in projects %}
                 
-                <div class="border rounded-2xl p-1 flex w-11/12 bg-white items-center">
-                    <a href="{{ url_for('projects', project_id=project.id )}}" class="block flex gap-2">
+                <div class="border border-black border-2 rounded-2xl p-1 flex w-11/12 bg-white items-center">
+                    <a href="{{ url_for('projects', project_id=project.id )}}" class="block flex gap-2 w-full">
                         <img src="/static/img/metamong.webp" alt="" class="w-40 h-20 p-2 block border-hidden rounded-2xl"/>
                         <div>
                             <p class="font-bold">{{project.name}}</p>
@@ -161,7 +161,7 @@
                         <div class="border rounded-2xl color-silver p-3">
                             p
                         </div>
-                        <button class="block color-green border rounded-2xl text-white font-bold px-2 py-1">Full schedules</button>
+                        <button class="block color-green border rounded-2xl text-white font-bold px-2 py-1 cursor-not-allowed">Full schedules</button>
                     </div>
                 </div>
     

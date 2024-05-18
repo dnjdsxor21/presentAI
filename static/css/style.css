@@ -34,7 +34,7 @@
 #nav-bar .nav-active,
 #nav-bar .nav-btn:hover {
     background-color: rgb(12 139 29);
-    stroke: white;
+    color: white;
 }
 
 #nav-calender .calender-active {
@@ -42,25 +42,47 @@
     font-weight: bold;
 }
 
-table {border-collapse: collapse;}
 th,td {
-    width:250px;
+    max-width:400px;
+    min-width:200px;
     height:50px;
-    text-align: center;
-    border: 0.5px solid #000000;
-
+    text-align: left;
+    border-bottom: 0.5px solid #f0f0f0;
+    text-wrap:nowrap;
+    text-overflow: clip;
     vertical-align:middle;
+    padding-right:0.5rem;
+    padding-left:2rem;
 }
 
-th:first-child, td:first-child {
-    width: 50px;
+th:first-child,
+td:first-child {
+    min-width: 1px;
 }
 
-tr td:last-child {
+tr:last-child {
     height:30px;
 }
+
+th:last-child,
+td:last-child {
+    text-align:center;
+}
+
+input[type="range"],
+input[type="checkbox"] {
+    accent-color: rgb(12 139 29);
+  }
 
 #ai-questions,
 #ai-outline {
     transition: opacity 1s ease; /* 투명도 변경 효과 설정 */
   }
+
+.star {
+    cursor: pointer;
+    color: gray;
+}
+.rated {
+    color: rgb(12 139 29);
+}

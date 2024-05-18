@@ -62,3 +62,19 @@ if (checkAll) {
     });
 });
 }
+
+function rateStar(star) {
+    const ratingValue = star.getAttribute('data-value');
+    const stars = document.querySelectorAll('.star');
+    
+    // 별점을 업데이트하기 전에 모든 별의 색상을 초기화합니다.
+    stars.forEach(function(star, index) {
+        console.log(index);
+        if (index < ratingValue) {
+            star.classList.add('rated');
+        } else {
+            star.classList.remove('rated');
+        }
+    });
+    console.log(ratingValue);
+}
