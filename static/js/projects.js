@@ -30,7 +30,7 @@ editProject.addEventListener('click',  async function(e) {
 function updateCalendar() {
     const now = new Date(); // 현재 날짜와 시간
     const dayOfWeek = now.getDay(); // 요일을 숫자로 반환 (0=일요일, 1=월요일, ...)
-    const date = now.getDate(); // 현재 날짜
+    // const date = now.getDate(); // 현재 날짜
     const month = now.getMonth(); // 현재 월 (0=1월, 1=2월, ...)
     const year = now.getFullYear(); // 현재 연도
 
@@ -47,11 +47,17 @@ function updateCalendar() {
 
     // 현재 요일에 해당하는 요소 찾기
     dateElements.forEach((elem, index) => {
+        const today = new Date();
+        today.setDate(today.getDate() + (index - dayOfWeek));
+        
+        const date = today.getDate();
+
         if (index === dayOfWeek) {
             elem.classList.add('calender-active'); // 현재 요일 표시
             elem.querySelector('p.font-bold').textContent = date; // 현재 날짜로 업데이트
         } else {
             elem.classList.remove('calender-active'); // 다른 요일은 비활성화
+            elem.querySelector('p.font-bold').textContent = date;
         }
     });
 }
