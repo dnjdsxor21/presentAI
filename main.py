@@ -1,29 +1,20 @@
 from fastapi import FastAPI, Request, HTTPException, File, UploadFile,Form
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles 
 from fastapi.templating import Jinja2Templates
-# from supabase_db import insert_table
+from supabase_api import get_files, get_projects, add_file
+from gpt_api import gpt35
+import uuid
+import re
 import os 
 import json 
 import time
 
-PROJECTS = [
-        {'name':'촉법소년', 'project':'촉법소년 처벌 현황', 'opinion':'촉법소년 처벌 강화가 필요한 이유', 'goal':'good', "id":1, "image":"cover1.jpeg"},
-        {'name':'공인탐정', 'project':'공인 탐정의 문제', 'opinion':'공인 탐정의 문제', 'goal':'gdood', "id":2, "image":"cover2.jpeg"},
-        {'name':'Project3', 'project':'a333', 'opinion':'helblo', 'goal':'go2od', "id":3, "image":"metamong.webp"},
-        {'name':'Project4', 'project':'b444', 'opinion':'heldlo', 'goal':'gofod', "id":4}
-    ]
-
-FILES = [
-        {'name':'촉법소년이란', 'source':'','text1':'https://terms.naver.com/entry.naver?docId=1965556&cid=43667&categoryId=43667', 'text2':'#네이버 #사전', 'importance':90, "id":1},
-        {'name':'대낮 칼부림', 'source':'', 'text1':'https://www.hankyung.com/article/202405147432i', 'text2':'#뉴스 #칼부림', 'importance':45, "id":2},
-        {'name':'사회적인식',  'source':'youtube', 'text1':'https://youtu.be/sPD8bm4aLqs?si=fkVeqlWFBbpFjnh7', 'text2':'#youtube', 'importance':80, "id":3},
-        {'name':'File4', 'source':'youtube', 'text1':'sample', 'text2':'sample2', 'importance':10, "id":4}
-    ]
-
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static") 
+app.mount("/db", StaticFiles(directory="db"), name="db") 
+
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
@@ -31,8 +22,7 @@ async def index(request: Request):
 
 @app.get("/projects")
 async def projects_list(request: Request):
-    global PROJECTS
-    projects = PROJECTS
+    projects = get_projects()
     return templates.TemplateResponse("projects.html", {"request": request, "projects":projects})
 
 @app.post("/projects/new")
@@ -45,32 +35,88 @@ async def new_project(request: Request, name="", project="", opinion="", goal=""
 @app.get("/projects/{project_id}")
 async def projects(request: Request, project_id:int):
     
-    global PROJECTS, FILES
-    sorted_files = sorted(FILES, key=lambda x: x['importance'], reverse=True)
-    project = PROJECTS[project_id-1]
+    projects = get_projects()
+    files = get_files()
+
+    sorted_files = sorted(files, key=lambda x: x['importance'], reverse=True)
+    sorted_files = [ f for f in sorted_files if f['project_id']==project_id ]
+
+    project = projects[project_id-1]
+
     return templates.TemplateResponse("data-list.html", {"request": request, 'files':sorted_files, "project":project})
+
+@app.post("/projects/{project_id}/new")
+async def new_file(request: Request, project_id:int, name=Form(None), text=Form(None)):
+    projects = get_projects()
+    files = get_files()
+    project = projects[project_id-1]
+
+    if "yout" in text:
+        source = text
+        text = extract_youtube(text)
+        if 'error' in text:
+            files.append({'name':name, 'source':source, 'text':"", 'summary':text, "tags": "", 'importance':1, "id":str(uuid.uuid4())[-10:], "project_id":project_id})
+            return
+    else:
+        source="text"
+    
+    prompt = f"제목:{name}\n내용:{text}\n나의 의견:{project['project']} {project['opinion']}\요약:"
+    summary = gpt35(system=f"나의 의견을 참고해서 자료를 요약해줘. 그리고 다음 예시처럼 3개의 hashtags를 작성해줘(#사전 #네이버 #범죄)",
+                       user=prompt)
+    # print(summary)
+    try:
+        tags = " ".join(re.findall(r"#\s*\w+", summary))
+    except:
+        tags = " "
+
+    try:
+        score = gpt35(system=f"자료와 나의 의견을 비교해서 자료의 중요도를 1부터 100까지의 점수로 평가해줘.",
+                    user=f"제목:{name}\n내용:{text}\n나의 의견:{project['project']} {project['opinion']}\n점수:")
+        score = max([int(s) for s in re.findall(r"\d+", score)])
+    except:
+        score = 10
+    
+    files.append({'name':name, 'source':source, 'text':text, 'summary':summary, "tags": tags, 'importance':score, "id":str(uuid.uuid4())[-10:], "project_id":project_id})
+    add_file(files)
+    return 
+    
+
 
 @app.get("/projects/{project_id}/outline")
 async def project_ai_outline(request: Request, project_id:int):
-    global PROJECTS, FILES
-    sorted_files = sorted(FILES, key=lambda x: x['importance'], reverse=True)
-    project = PROJECTS[project_id-1]
+    projects = get_projects()
+    files = get_files()
+
+    sorted_files = sorted(files, key=lambda x: x['importance'], reverse=True)
+    sorted_files = [ f for f in sorted_files if f['project_id']==project_id ]
+    project = projects[project_id-1]
     return templates.TemplateResponse("data-ai-outline.html", {"request": request, 'files':sorted_files, "project":project})
 
 @app.post("/projects/{project_id}/outline")
 async def generate_outline(request: Request, project_id:int):
-    global PROJECTS, OUTLINE
-    project = PROJECTS[project_id-1]
-    ## outline extract
-    time.sleep(5)
-    return JSONResponse(OUTLINE.split('\n'))
+    projects = get_projects()
+    files = get_files()
+
+    sorted_files = sorted(files, key=lambda x: x['importance'], reverse=True)
+    sorted_files = [ f for f in sorted_files if f['project_id']==project_id ]
+    project = projects[project_id-1]
+
+    prompt = '\n'.join([ f"자료{idx}\n제목:{file['name']} 내용:{file['summary']}" for idx, file in enumerate(sorted_files) ])
+    completion = gpt35(
+        system= '다음 자료를 참고해서 발표 개요를 작성해줘.',
+        user= f"발표주제: {project['project']} {project['opinion']}\n{prompt}"
+    )
+    return JSONResponse(completion.split('\n'))
 
 
 @app.get("/projects/{project_id}/questions")
 async def project_ai_question(request: Request, project_id:int):
-    global PROJECTS, FILES
-    sorted_files = sorted(FILES, key=lambda x: x['importance'], reverse=True)
-    project = PROJECTS[project_id-1]
+    projects = get_projects()
+    files = get_files()
+
+    sorted_files = sorted(files, key=lambda x: x['importance'], reverse=True)
+    sorted_files = [ f for f in sorted_files if f['project_id']==project_id ]
+    project = projects[project_id-1]
     return templates.TemplateResponse("data-ai-question.html", {"request": request, 'files':sorted_files, "project":project})
 
 @app.post("/projects/generate-questions")
@@ -88,8 +134,8 @@ async def generate_questions(request: Request, file: UploadFile=File(...)):
 
 @app.get("/projects/{project_id}/settings")
 async def project_settings(request: Request, project_id:int):
-    global PROJECTS
-    project = PROJECTS[project_id-1]
+    projects = get_projects()
+    project = projects[project_id-1]
     return templates.TemplateResponse("data-settings.html", {"request": request, "project":project})
 
 @app.post("/projects/{project_id}/edit")
@@ -102,39 +148,30 @@ async def project_delete(request: Request, project_id:int):
     print(project_id)
     return
 
+@app.get("/signup")
+async def signup(request:Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
+
+# @app.post("/signup")
+# async def signup_email(email=Form(...), password=Form(...)):
+#     response = supabase_api.signup_email(email, password)
+#     print(response)
+#     if response.get("error"):
+#         raise HTTPException(status_code=400, detail=response["error"]["message"])
+#     return JSONResponse(content=response)
 
 
+# @app.post("/login")
+# async def login_email(email=Form(...), password=Form(...)):
+#     data = supabase_api.login_email(email, password)
+#     return data 
 
-OUTLINE = """프레젠테이션 개요: "촉법소년 처벌 강화의 필요성"
-1. 서론
-현재 촉법소년에 대한 정의 및 법적 취급 소개
-최근 촉법소년에 의한 범죄 사례 소개 및 사회적 문제 제기
-2. 촉법소년에 대한 현재 법적 대응
-촉법소년에 대한 형벌이 아닌 보호처분의 법적 근거
-현재 적용되는 보호처분의 종류 및 절차
-3. 촉법소년 처벌 강화의 필요성
-촉법소년에 의한 범죄의 심각성 및 재발 우려
-사례 분석: 경기 양주 초등학생 칼부림 사건
-범죄 예방 및 재발 방지를 위한 처벌 강화의 중요성
-사회적, 심리적 영향 고려: 촉법소년에 대한 일반인의 인식 및 불안감
-4. 처벌 강화를 위한 구체적 방안
-촉법소년 연령 하향 조정의 검토
-처벌과 병행한 교육 및 상담 프로그램의 강화
-재범 방지를 위한 사회적 지원 및 모니터링 체계 구축
-5. 사례 및 연구 자료
-다른 국가의 촉법소년 처벌 및 교육 정책 비교
-전문가 의견 및 심리학적, 사회학적 연구 결과 소개
-6. 반대 의견 및 논쟁점
-처벌 강화에 대한 반대 의견 소개 및 반박
-처벌과 교육의 균형에 대한 논의
-7. 결론 및 제언
-촉법소년 처벌 강화의 필요성 재확인
-법적, 사회적 차원에서의 종합적 대책 제안
-보충 자료
-촉법소년 범죄 통계 및 추세 분석
-심리학적, 사회학적 관점에서의 촉법소년 범죄 원인 분석
-촉법소년을 위한 성공적인 교정 프로그램 사례
-대중매체 및 SNS에서의 촉법소년 관련 인식 조사 결과"""
+# @app.post("/google")
+# async def login_google():
+#     data = supabase_api.login_google()
+#     print(data.url)
+#     return RedirectResponse(data.url)
+
 
 
 async def read_file(file):
@@ -169,3 +206,31 @@ async def read_file(file):
     else:
         text = "none"
     return text
+
+
+def extract_youtube(video_link:str):
+    from youtube_transcript_api import YouTubeTranscriptApi
+    from youtube_transcript_api.formatters import TextFormatter
+    
+
+    # # YouTube 영상 ID
+    if 'shorts' in video_link:
+        video_id = video_link.split('/')[-1]
+    elif 'watch' in video_link:
+        video_id = re.findall(r"v=([\w\-\_]+)", video_link)
+    else:
+        video_id = re.findall(r'[\w\-\_]+', video_link.split('/')[-1])[0]
+
+    try:
+        # 스크립트 가져오기
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['ko','en'])
+        
+        # 스크립트를 일반 텍스트로 변환
+        formatter = TextFormatter()
+        text_transcript = formatter.format_transcript(transcript_list)
+        
+        # print(text_transcript)
+    except Exception as e:
+        # print(f"스크립트를 가져오는 데 실패했습니다: {e}")
+        return "Link Error"
+    return text_transcript
