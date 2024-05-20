@@ -8,17 +8,17 @@ import json
 import time
 
 PROJECTS = [
-        {'name':'Project1', 'project':'p111', 'opinion':'hello', 'goal':'good', "id":1},
-        {'name':'Project2', 'project':'1222', 'opinion':'hdello', 'goal':'gdood', "id":2},
-        {'name':'Project3', 'project':'a333', 'opinion':'helblo', 'goal':'go2od', "id":3},
+        {'name':'촉법소년', 'project':'촉법소년 처벌 현황', 'opinion':'촉법소년 처벌 강화가 필요한 이유', 'goal':'good', "id":1, "image":"cover1.jpeg"},
+        {'name':'공인탐정', 'project':'공인 탐정의 문제', 'opinion':'공인 탐정의 문제', 'goal':'gdood', "id":2, "image":"cover2.jpeg"},
+        {'name':'Project3', 'project':'a333', 'opinion':'helblo', 'goal':'go2od', "id":3, "image":"metamong.webp"},
         {'name':'Project4', 'project':'b444', 'opinion':'heldlo', 'goal':'gofod', "id":4}
     ]
 
 FILES = [
-        {'name':'File1', 'source':'', 'text1':'aoaoaoaoaoaoaoaoaoaogjgjg안녕하세요', 'text2':'hello2', 'importance':90, "id":1},
-        {'name':'File2', 'source':'jajaja.pdf', 'text1':'hello1안녕하세요안녕하세요', 'text2':'hello2', 'importance':0, "id":2},
-        {'name':'File3', 'source':'aaa.docx', 'text1':'aoinoweignoweign;e안녕하세요oigna', 'text2':'hello2', 'importance':36, "id":3},
-        {'name':'File4', 'source':'youtube', 'text1':'hell안녕하세요o1', 'text2':'aoinowe안녕하세요ignoweign', 'importance':85, "id":4}
+        {'name':'촉법소년이란', 'source':'','text1':'https://terms.naver.com/entry.naver?docId=1965556&cid=43667&categoryId=43667', 'text2':'#네이버 #사전', 'importance':90, "id":1},
+        {'name':'대낮 칼부림', 'source':'', 'text1':'https://www.hankyung.com/article/202405147432i', 'text2':'#뉴스 #칼부림', 'importance':45, "id":2},
+        {'name':'사회적인식',  'source':'youtube', 'text1':'https://youtu.be/sPD8bm4aLqs?si=fkVeqlWFBbpFjnh7', 'text2':'#youtube', 'importance':80, "id":3},
+        {'name':'File4', 'source':'youtube', 'text1':'sample', 'text2':'sample2', 'importance':10, "id":4}
     ]
 
 app = FastAPI()
@@ -105,28 +105,36 @@ async def project_delete(request: Request, project_id:int):
 
 
 
-OUTLINE = """자료 정리 및 계획
-1. 통합 자료 관리
-
-다양한 형태의 자료(문서, 이미지, 영상 등)를 한 곳에 모아 체계적으로 관리할 수 있습니다.
-자료의 중요도, 용도 등을 태그하여 손쉽게 검색하고 활용할 수 있습니다.
-예를 들어 Asana와 같은 프로젝트 관리 도구를 활용하여 자료를 체계적으로 정리할 수 있습니다. 2
-2. 발표 연습 및 피드백
-
-발표 영상을 녹화하고 저장할 수 있습니다.
-녹화된 영상에 대해 AI가 피드백을 제공하여 발표 스킬 향상을 돕습니다.
-주변인들의 피드백을 수집하고 관리할 수 있습니다.
-이를 통해 발표 전 충분한 연습과 피드백 수집이 가능합니다.
-3. 팀 협업
-
-팀원들과 자료를 공유하고 함께 관리할 수 있습니다.
-팀 단위 발표 연습 및 피드백을 진행할 수 있습니다.
-팀워크와 협업 능력을 향상시킬 수 있습니다.
-4. 발표 통합 솔루션
-
-자료 관리, 발표 연습, 피드백 수집 등의 기능을 하나의 솔루션에서 제공합니다.
-학교 및 기관에서 발표 준비 및 관리를 위해 활용할 수 있습니다.
-이와 같은 체계적인 자료 관리와 발표 준비 과정을 통해 데이터 리터러시와 비판적 사고력을 향상시킬 수 있습니다. 또한 발표 능력 향상과 팀워크 강화의 효과도 기대할 수 있습니다."""
+OUTLINE = """프레젠테이션 개요: "촉법소년 처벌 강화의 필요성"
+1. 서론
+현재 촉법소년에 대한 정의 및 법적 취급 소개
+최근 촉법소년에 의한 범죄 사례 소개 및 사회적 문제 제기
+2. 촉법소년에 대한 현재 법적 대응
+촉법소년에 대한 형벌이 아닌 보호처분의 법적 근거
+현재 적용되는 보호처분의 종류 및 절차
+3. 촉법소년 처벌 강화의 필요성
+촉법소년에 의한 범죄의 심각성 및 재발 우려
+사례 분석: 경기 양주 초등학생 칼부림 사건
+범죄 예방 및 재발 방지를 위한 처벌 강화의 중요성
+사회적, 심리적 영향 고려: 촉법소년에 대한 일반인의 인식 및 불안감
+4. 처벌 강화를 위한 구체적 방안
+촉법소년 연령 하향 조정의 검토
+처벌과 병행한 교육 및 상담 프로그램의 강화
+재범 방지를 위한 사회적 지원 및 모니터링 체계 구축
+5. 사례 및 연구 자료
+다른 국가의 촉법소년 처벌 및 교육 정책 비교
+전문가 의견 및 심리학적, 사회학적 연구 결과 소개
+6. 반대 의견 및 논쟁점
+처벌 강화에 대한 반대 의견 소개 및 반박
+처벌과 교육의 균형에 대한 논의
+7. 결론 및 제언
+촉법소년 처벌 강화의 필요성 재확인
+법적, 사회적 차원에서의 종합적 대책 제안
+보충 자료
+촉법소년 범죄 통계 및 추세 분석
+심리학적, 사회학적 관점에서의 촉법소년 범죄 원인 분석
+촉법소년을 위한 성공적인 교정 프로그램 사례
+대중매체 및 SNS에서의 촉법소년 관련 인식 조사 결과"""
 
 
 async def read_file(file):
