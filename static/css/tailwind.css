@@ -595,3 +595,5 @@ video {
 .outline {
   outline-style: solid;
 }
+
+/* npx tailwindcss -i ./input.css -o ../static/css/tailwind.css --watch  */

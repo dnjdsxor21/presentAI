@@ -35,7 +35,7 @@ if (outlineBtn) {
             outlineBox.innerHTML = '';
             answers.forEach(answer => {
                 var outlineDiv = document.createElement('div');
-                outlineDiv.textContent = answer;
+                outlineDiv.textContent = convertBoldText(answer);
                 outlineBox.appendChild(outlineDiv);
               });
         
@@ -50,3 +50,7 @@ if (outlineBtn) {
 
 }
 
+function convertBoldText(text) {
+    // **로 둘러싸인 텍스트를 <strong>으로 변환
+    return text.replace(/\*\*(.*?)\*\*/g, "<span class='font-bold'>$1</span>");
+  }
