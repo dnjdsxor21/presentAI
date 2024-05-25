@@ -1,7 +1,7 @@
 [
     {
         "name": "촉법소년",
-        "project": "촉법소년 처벌 현황",
+        "topic": "촉법소년 처벌 현황",
         "opinion": "촉법소년 처벌 강화가 필요한 이유",
         "goal": "",
         "id": 1,
@@ -9,7 +9,7 @@
     },
     {
         "name": "공인탐정",
-        "project": "공인 탐정의 문제",
+        "topic": "공인 탐정의 문제",
         "opinion": "공인 탐정의 문제",
         "goal": "",
         "id": 2,
@@ -17,14 +17,14 @@
     },
     {
         "name": "Project3",
-        "project": "sample data",
+        "topic": "sample data",
         "opinion": "",
         "goal": "",
         "id": 3
     },
     {
         "name": "Project4",
-        "project": "sample data",
+        "topic": "sample data",
         "opinion": "",
         "goal": "",
         "id": 4
