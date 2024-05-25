@@ -46,8 +46,6 @@ async def projects(request: Request, project_id:int):
     
     project = supabase_api.fetch_projects(project_id=project_id)
     files = supabase_api.fetch_files(project_id=project_id)
-    # print(project)
-    # print(files)
     sorted_files = sorted(files, key=lambda x: x['importance'], reverse=True)
 
     return templates.TemplateResponse("data-list.html", {"request": request, 'files':sorted_files, "project":project})
@@ -68,7 +66,6 @@ async def new_file(request: Request, project_id:int, name=Form(None), text=Form(
     prompt = f"제목:{name}\n내용:{text}\n나의 의견:{project['topic']} {project['opinion']}\요약:"
     summary = gpt35(system=f"나의 의견을 참고해서 자료를 요약해줘. 그리고 다음 예시처럼 3개의 hashtags를 작성해줘(#사전 #네이버 #범죄)",
                        user=prompt)
-    # print(summary)
     try:
         tags = " ".join(re.findall(r"#\s*\w+", summary))
     except:
@@ -139,12 +136,8 @@ async def generate_questions(request: Request, file: UploadFile=File(...)):
                 system= '발표 대본을 보고 예상가능한 질문 3개를 파이썬 리스트 포맷으로 작성해줘. example:["This is question A","This is question B","This is question C"]',
                 user= text
             )
-        print(completion)
         questions = re.findall(r'\"(.+)\"',completion) if re.findall(r'\"(.+)\"',completion) else completion
         
-        print("")
-        print(type(questions))
-        print(questions)
     except Exception as e:
         print(e)
         questions = ["This is question A","This is question B","This is question C"]
@@ -235,7 +228,7 @@ def extract_youtube(video_link:str):
     if 'shorts' in video_link:
         video_id = video_link.split('/')[-1]
     elif 'watch' in video_link:
-        video_id = re.findall(r"v=([\w\-\_]+)", video_link)
+        video_id = re.findall(r"v=([\w\-\_]+)", video_link)[0]
     else:
         video_id = re.findall(r'[\w\-\_]+', video_link.split('/')[-1])[0]
 
