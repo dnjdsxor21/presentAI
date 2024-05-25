@@ -64,17 +64,17 @@ async def new_file(request: Request, project_id:int, name=Form(None), text=Form(
         source="text"
     
     prompt = f"제목:{name}\n내용:{text}\n나의 의견:{project['topic']} {project['opinion']}\요약:"
-    summary = gpt35(system=f"나의 의견을 참고해서 자료를 요약해줘. 그리고 다음 예시처럼 3개의 hashtags를 작성해줘(#사전 #네이버 #범죄)",
+    summary = gpt35(system=f"나의 의견을 참고해서 자료를 6문장으로 요약해줘. 그리고 마지막에 3개의 해시태그를 작성해줘.",
                        user=prompt)
     try:
-        tags = " ".join(re.findall(r"#\s*\w+", summary))
+        tags = " ".join(re.findall(r"(#\s*\w+\s)", summary+"  "))
     except:
         tags = " "
 
     try:
-        score = gpt35(system=f"자료와 나의 의견을 비교해서 자료의 중요도를 1부터 100까지의 점수로 평가해줘.",
-                    user=f"제목:{name}\n내용:{text}\n나의 의견:{project['topic']} {project['opinion']}\n점수:")
-        score = max([int(s) for s in re.findall(r"\d+", score)])
+        score = gpt35(system=f"다음 자료와 나의 의견을 비교해서 유사도를 1부터 100까지의 점수로 평가해줘.",
+                    user=f"제목:{name}\n내용:{summary}\n나의 의견:{project['topic']} {project['opinion']}\n점수:")
+        score = max([int(s) for s in re.findall(r"\d+", score) if 0<=int(s)<=100])
     except:
         score = 10
     
@@ -102,7 +102,7 @@ async def generate_outline(request: Request, project_id:int):
 
         prompt = '\n'.join([ f"자료{idx}\n제목:{file['name']} 내용:{file['summary']}" for idx, file in enumerate(sorted_files[:6]) ])
         completion = gpt35(
-            system= '다음 자료를 참고해서 발표 개요를 작성해줘.',
+            system= '다음 자료를 참고해서 발표 개요를 7개의 항목으로 작성해줘.',
             user= f"발표주제: {project['topic']} {project['opinion']}\n{prompt}"
         )
         return JSONResponse(completion.split('\n'))
