@@ -19,12 +19,16 @@ editProject.addEventListener('click',  async function(e) {
     const childrens = projectForm.children;
     let query = "?";
     for(let i=0;i<childrens.length;i++){
+        if(childrens[i].lastElementChild.value!==""){
         query += `${childrens[i].firstElementChild.dataset.name}=${childrens[i].lastElementChild.value}&`;
+        childrens[i].lastElementChild.value="";
+        }
     }
 
-    await fetch(`/project/new${query}`,
+    await fetch(`/projects/new${query}`,
         {method:'POST'});
-    
+        
+    window.location.href="/projects";
 });
 
 function updateCalendar() {

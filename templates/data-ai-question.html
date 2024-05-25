@@ -54,7 +54,7 @@
             <p class="text-2xl font-bold"><a href="{{ url_for('projects' ,project_id=project.id) }}" class="">{{project.name}}</a></p>              
         </div>
         <div class="border rounded-2xl relative px-2 py-3 w-3/5">
-            <input type="text" placeholder="Enter something" class="w-full pl-2"/>
+            <input type="text" placeholder="검색" class="w-full pl-2"/>
             <button class="absolute right-3 top-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -86,7 +86,7 @@
 
 {% block content %}
 <div class="ml-40 h-screen">
-    <div class="m-3 font-bold text-3xl">AI QUESTIONS</div>
+    <div class="m-3 font-bold text-3xl">AI 예상질문</div>
     <div class="flex flex-col items-center gap-4">
         <div class="bg-blue-100 w-5/6 flex flex-col items-center gap-1.5 p-3">
             <div class="mt-5">
@@ -96,13 +96,14 @@
             </div>
             <div>(.txt, .pdf, .docx)</div>
             <div class="bg-blue-200">
-                <input id="fileInput" type="file"/>
+                <div class="p-1 text-center">발표 대본파일 추가</div>
+                <input id="fileInput" type="file" class="text-center"/>
             </div>
         </div>
 
         <button id="generate-questions" class=" w-2/3 color-green border border-hidden rounded-3xl">
             <div class="text-white text-center font-bold px-5 py-2">
-                Generate questions
+                예상질문 생성하기
             </div>
             </button>
 
@@ -112,17 +113,17 @@
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Processing...
+                답변중...
               </button>
         </div>
 
         <div id="ai-questions" class="w-5/6 bg-blue-100 opacity-0 hidden">
             <div class="flex items-center gap-3 p-2">
                 <img src="/static/img/airobot.jpeg" class="w-32 h-32 block"/>
-                <div class="font-bold text-xl">AI assistance</div>
+                <div class="font-bold text-xl">AI 질문봇</div>
             </div>
             <div class="p-2">
-                <p class="text-xl">Hi! This is the expected question for you!</p>
+                <p class="text-xl">안녕하세요! 예상되는 질문입니다.</p>
             </div>
             <div id="questions-box" class="flex flex-col items-center text-xl gap-2 w-5/6 p-2">
                 <div class="bg-blue-200 text-white w-full p-2">This is question A</div>

@@ -35,7 +35,7 @@ if (outlineBtn) {
             outlineBox.innerHTML = '';
             answers.forEach(answer => {
                 var outlineDiv = document.createElement('div');
-                outlineDiv.textContent = convertBoldText(answer);
+                outlineDiv.innerHTML = convertBoldText(answer);
                 outlineBox.appendChild(outlineDiv);
               });
         

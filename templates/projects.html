@@ -48,7 +48,7 @@
     <div class="ml-40">
     <header id="header" class="flex flex-nowrap justify-between items-center p-3 w-auto">
         <div class="border rounded-2xl relative px-2 py-3 w-3/5">
-            <input type="text" placeholder="Enter something" class="w-full pl-2"/>
+            <input type="text" placeholder="검색" class="w-full pl-2"/>
             <button class="absolute right-3 top-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -84,10 +84,10 @@
         <div class="col-span-2 border border-white rounded-lg p-2 min-w-[550px]">
             <div class="flex justify-between">
                 <div class="">
-                    <h2 class="font-bold text-xl">Welcome, Presenter</h2>
-                    <p class="text-md text-wrap">Explore your pregress and knowledge growth<br>with the AI-powered features</p>
+                    <h2 class="font-bold text-xl m-2">새로운 발표 주제가 생겼나요?</h2>
+                    <p class="text-md text-wrap m-2">AI와 함께 발표 능력을 키워보세요.</p>
                 </div>
-                <button class="border rounded-3xl color-green p-1 text-white w-32 h-12">New Project</button>
+                <button class="border rounded-3xl color-green p-1 text-white w-32 h-12 hover:bg-green-800">새 프로젝트</button>
             </div>
         </div>
 
@@ -96,48 +96,52 @@
             <div id="calendar-month-year" class="font-bold text-2xl text-right px-4"></div>
             <div class="flex flex-nowrap justify-evenly overflow-hidden w-fit-content">
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Sun</p>
+                    <p>일</p>
                     <p class="font-bold">8</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Mon</p>
+                    <p>월</p>
                     <p class="font-bold">2</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Tue</p>
+                    <p>화</p>
                     <p class="font-bold">3</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Wed</p>
+                    <p>수</p>
                     <p class="font-bold">4</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Thu</p>
+                    <p>목</p>
                     <p class="font-bold">5</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Fri</p>
+                    <p>금</p>
                     <p class="font-bold">6</p>
                 </div>
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
-                    <p>Sat</p>
+                    <p>토</p>
                     <p class="font-bold">7</p>
                 </div>
             </div>
         </div>
 
         <div class="col-span-2 min-w-[550px]">
-            <p class="p-2 font-bold">My tasks</p>
+            <p class="p-2 font-bold">내 프로젝트</p>
 
             <div class="flex flex-col gap-4 justify-start items-center color-silver px-2 py-8 min-h-[26rem]">
                 {% for project in projects %}
                 
-                <div class="border border-black border-2 rounded-2xl p-1 flex w-11/12 bg-white items-center">
+                <div class="border border-black border-2 rounded-2xl p-1 flex w-11/12 bg-white items-center hover:bg-gray-100 hover:border-[2.5px]">
+                    {% if project.topic != "Sample data" %}
                     <a href="{{ url_for('projects', project_id=project.id )}}" class="block flex gap-2 w-full">
-                        <img src="/db/img/{{ project.image | default('noimage.jpeg') }}" alt="" class="w-40 h-20 p-2 block border-hidden rounded-2xl"/>
+                    {% else %}
+                    <a class="block flex gap-2 w-full" >
+                    {% endif %}
+                        <img src="/db/img/{{ project.image | default('noimage.jpeg') }}" alt="" class="w-40 h-24 p-2 block border-hidden rounded-2xl"/>
                         <div>
                             <p class="font-bold">{{project.name}}</p>
-                            <p>{{project.project}}</p>
+                            <p>{{project.topic}}</p>
                             <p>{{project.opinion}}</p>
                         </div>
                     </a>
@@ -150,30 +154,30 @@
         <div class="flex flex-col gap-3 w-fit-content min-x-[300px]">
             <div class="flex flex-col gap-2 justify-start p-5">
                 <div class="min-h-[14rem]">
-                    <p class="p-2 text-2xl font-bold">Upcoming presentations</p>
+                    <p class="p-2 text-2xl font-bold">프로젝트 일정</p>
                     <div class="flex flex-col gap-2">
-                        <div class="border rounded-2xl color-silver p-3 text-gray-400">
-                            Write down your presentation
+                        <div class="border rounded-2xl color-silver p-3 text-gray-300">
+                            새로운 프로젝트 일정 추가하기
                         </div>
-                        <div class="border rounded-2xl color-silver p-3 text-gray-400">
-                            Write down your presentation
+                        <div class="border rounded-2xl color-silver p-3 text-gray-300">
+                            새로운 프로젝트 일정 추가하기
                         </div>
-                        <div class="border rounded-2xl color-silver p-3 text-gray-400">
-                            Write down your presentation
+                        <div class="border rounded-2xl color-silver p-3 text-gray-300">
+                            새로운 프로젝트 일정 추가하기
                         </div>
                         <button class="block color-green border rounded-2xl text-white font-bold px-2 py-1 cursor-not-allowed">Full schedules</button>
                     </div>
                 </div>
     
                 <div class="min-h-[14rem]">
-                    <p class="p-2 text-2xl font-bold">Feedback your finished project</p>
+                    <p class="p-2 text-2xl font-bold">완료한 프로젝트 회고 남기기</p>
                     <div class="flex flex-col gap-2">
+                        {%for project in projects[:2] %}
                         <div class="border rounded-2xl color-silver p-3">
-                            촉법소년
+                            <a href="/projects/{{project.id}}">{{project.name}}</a>
                         </div>
-                        <div class="border rounded-2xl color-silver p-3">
-                            공인탐정
-                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </div>
     
@@ -208,7 +212,7 @@
                     <input type="text" required class="w-full p-1 border border-black"/>
                 </div>
                 <div class="p-2">
-                    <div data-name="project">프로젝트 주제:</div>
+                    <div data-name="topic">프로젝트 주제:</div>
                     <input type="text" required class="w-full p-1 border border-black"/>
                 </div>
                 <div class="p-2">

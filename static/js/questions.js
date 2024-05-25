@@ -30,7 +30,7 @@ questionsBtn.addEventListener('click', async function(e){
         questionsBox.innerHTML = '';
         questions.forEach(question => {
             var questionDiv = document.createElement('div');
-            questionDiv.classList.add('bg-blue-200', 'text-white', 'w-full', 'p-2');
+            questionDiv.classList.add('bg-blue-200', 'text-black', 'w-full', 'py-2', 'px-4');
             questionDiv.textContent = question;
             questionsBox.appendChild(questionDiv);
           });

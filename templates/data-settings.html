@@ -61,7 +61,7 @@
             <p class="text-2xl font-bold"><a href="{{ url_for('projects' ,project_id=project.id) }}" class="">{{project.name}}</a></p>              
         </div>
         <div class="border rounded-2xl relative px-2 py-3 w-3/5">
-            <input type="text" placeholder="Enter something" class="w-full pl-2"/>
+            <input type="text" placeholder="검색" class="w-full pl-2"/>
             <button class="absolute right-3 top-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -106,7 +106,7 @@
                     <div class="p-2">
                         <div>프로젝트 주제:</div>
                         <input type="text" required minlength="1" class="w-full p-1 border border-black"
-                        value="{{project.project}}"/>
+                        value="{{project.topic}}"/>
                     </div>
                     <div class="p-2">
                         <div>주제에 대한 내 의견:</div>
@@ -120,8 +120,8 @@
                 
 
                 <div class="flex justify-evenly items-center">
-                    <button id='edit' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-green">Edit project</button>
-                    <button id='delete' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-red">Delete project</button>
+                    <button id='edit' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-green">프로젝트 수정</button>
+                    <button id='delete' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-red">프로젝트 삭제</button>
                 </div>
             </div>
         </div>        
