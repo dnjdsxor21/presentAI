@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-<nav id="nav-bar" class="fixed color-silver fixed w-32 h-screen z-10">
+<nav id="nav-bar" class="fixed color-silver fixed w-24 h-screen z-10 md:w-32">
     <div class="flex flex-col justify-start items-center gap-6">
         <div class="mt-10">
             <a href="/">
@@ -45,7 +45,7 @@
 {% endblock %}
 
 {% block header %}
-    <div class="ml-40">
+    <div class="ml-28 md:ml-40">
     <header id="header" class="flex flex-nowrap justify-between items-center p-3 w-auto">
         <div class="border rounded-2xl relative px-2 py-3 w-3/5">
             <input type="text" placeholder="검색" class="w-full pl-2"/>
@@ -79,7 +79,7 @@
  {% endblock %}
 
  {% block content %}
- <div class="ml-40">
+ <div class="ml-28 md:ml-40">
     <section id="sub-header" class="p-3 grid grid-cols-1 gap-2 md:grid-cols-3">
         <div class="col-span-2 border border-white rounded-lg p-2 min-w-[550px]">
             <div class="flex justify-between">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block navbar %} 
-<nav id="nav-bar" class="fixed color-silver fixed w-32 h-screen z-10">
+<nav id="nav-bar" class="fixed color-silver fixed w-24 h-screen z-10 md:w-32">
     <div class="flex flex-col justify-start items-center gap-6">
         <div class="mt-10">
             <a href="/projects">
@@ -52,7 +52,7 @@
 
 
 {% block header %}
-<div class="ml-40">
+<div class="ml-28 md:ml-40">
     <header id="header" class="flex flex-nowrap justify-between items-center p-3 w-auto">
         <div class="flex items-center gap-3 p-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -60,7 +60,7 @@
             </svg>
             <p class="text-2xl font-bold"><a href="{{ url_for('projects' ,project_id=project.id) }}" class="">{{project.name}}</a></p>              
         </div>
-        <div class="border rounded-2xl relative px-2 py-3 w-3/5">
+        <div class="border rounded-2xl relative px-2 py-3 w-3/5 hidden md:block">
             <input type="text" placeholder="검색" class="w-full pl-2"/>
             <button class="absolute right-3 top-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -92,7 +92,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="ml-40 h-screen">
+<div class="ml-28 md:ml-40 h-screen">
     <div class="m-3 font-bold text-3xl">Settings</div>
         <div class="bg-white min-w-xl max-w-5xl h-[90%] overflow-y-scroll">
             <div class="p-5 flex flex-col gap-5 items-center">
