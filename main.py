@@ -9,6 +9,7 @@ import re
 import os 
 import json 
 import time
+import pandas as pd
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -26,16 +27,20 @@ async def projects_list(request: Request):
     return templates.TemplateResponse("projects.html", {"request": request, "projects":projects})
 
 @app.post("/projects/new")
-async def new_project(request: Request, name:str="", topic:str="", opinion:str="opinion", goal:str="goal"):
+async def new_project(request: Request, name:str="", topic:str="", opinion:str="opinion", keywords:str="goal"):
     if (name.strip()!="") and (topic.strip()!=""):
         # data insert
+        completion = gpt35(
+            system="키워드 3개 추출해줘. 예시1) 촉법소년 처벌강화의 키워드: 촉법, 소년, 처벌 예시2) 데이터 리터러시 교육의 키워드: 데이터, 리터러시, 교육",
+            user = f"{topic} {opinion}"
+        )
         options = {
             "name":name,
             "topic":topic,
             "opinion":opinion,
-            "goal":goal
+            "keywords": completion.replace('\n', '')
         }
-        print(options)
+        # print(options)
         supabase_api.insert_projects(
             options
         )
@@ -81,7 +86,24 @@ async def new_file(request: Request, project_id:int, name=Form(None), text=Form(
     supabase_api.insert_files({'name':name, 'source':source, 'text':text, 'summary':summary, "tags": tags, 'importance':score, "project_id":project_id})
     return 
     
-
+@app.get("/projects/{project_id}/recommendation")
+async def project_recommendation(request:Request, project_id:int):
+    project = supabase_api.fetch_projects(project_id=project_id)
+    try:
+        keywords = '|'.join([ kw.strip() for kw in project["keywords"].split(',') ])
+        output = []
+        for f in sorted(os.listdir("db/csv")):
+            tmp = pd.read_csv(os.path.join('db/csv',f),encoding='utf-8')
+            tmp = tmp[tmp['name'].str.contains(keywords)]
+            output.append(tmp)
+        output = pd.concat(output).drop_duplicates(subset=["name"])
+        recommended = output.values.tolist()
+        recommended = [ {"name":r[0], "url":r[1]} for r in recommended ]
+    except Exception as e:
+        print(e)
+        recommended = [ {"name":"error", "url":""} ]
+    
+    return templates.TemplateResponse("data-recommendation.html", {"request":request, "project":project, "recommended":recommended})
 
 @app.get("/projects/{project_id}/outline")
 async def project_ai_outline(request: Request, project_id:int):

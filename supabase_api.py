@@ -15,7 +15,7 @@ def fetch_projects(project_id:int=-1):
             response = supabase.table("projects").select("*").eq("id", project_id).execute()
             data = response.data[0]
         else:
-            response = supabase.table("projects").select("*").execute()
+            response = supabase.table("projects").select("*").order("id").execute()
             data = response.data
             if len(data) < 4:
                 for i in range(4 - len(data)): data.append({"name": "Project","topic": "Sample data","opinion": "","goal": "","id": 999})
