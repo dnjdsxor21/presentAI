@@ -3,7 +3,7 @@
 {% block navbar %} 
 <nav id="nav-bar" class="fixed color-silver fixed w-24 h-screen z-10 md:w-32">
     <div class="flex flex-col justify-start items-center gap-6">
-        <div class="mt-10">
+        <div class="nav-btn mt-10">
             <a href="/projects">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -11,10 +11,10 @@
             </a>
         </div>
         <div class="nav-btn nav-active mt-20">
-            <a href="{{ url_for('projects' ,project_id=project.id) }}" class="">
+            <a href="{{ url_for('projects' ,project_id=project.id) }}" class="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stoke-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
-                  </svg>                                     
+                  </svg>                                   
             </a>
         </div>
         <div class="nav-btn">
@@ -111,8 +111,8 @@
                     <th><input type="checkbox" name="check" id="checkAll"/></th>
                     <th>이름</th>
                     <th>요약</th>
-                    <th>AI태그</th>
-                    <th>AI중요도</th>
+                    <th>AI 태그</th>
+                    <th>AI 중요도</th>
                 </tr>
                 {% for file in files %}
                     <tr class="hover:font-bold hover:bg-gray-100">
@@ -155,7 +155,7 @@
                 <div class="px-2"><input type="checkbox" name="check"/> 영상</div>
             </div>
             <!-- <button id="ai-analyzer" class="color-green text-white text-center text-xl border border-hidden rounded-2xl px-2 py-1">AI Analyzer</button> -->
-            <button id="add-feedback" class="color-green text-white text-center text-xl border border-hidden rounded-2xl px-2 py-1 hover:bg-green-800">회고 작성하기</button>
+            <button id="add-feedback" class="color-green text-white text-center text-xl border border-hidden rounded-3xl px-2 py-1 hover:bg-green-800">회고 작성하기</button>
         </div>
     </div>
 </div>
@@ -173,21 +173,21 @@
         </div>
         <div class="p-5 flex flex-col gap-5">
             <div class="text-3xl font-bold text-center pb-5">자료 추가</div>
-            <div class="w-[95%] h-full color-silver border border-black">
+            <div class="w-[95%] h-full color-silver border border-black rounded-xl">
                 <div id="tabs" class="flex">
-                    <button class="w-1/2 h-12 color-green border border-black">Text</button>
+                    <button class="w-1/2 h-12 text-xl color-green border border-black rounded-tl-xl hover:bg-green-800 hover:text-white">Text</button>
                     <!-- <button class="w-1/3 h-12 color-silver border border-black" disabled="">file</button> -->
-                    <button class="w-1/2 h-12 color-silver border border-black">Youtube</button>
+                    <button class="w-1/2 h-12 text-xl color-silver border border-black rounded-tr-xl hover:bg-green-800 hover:text-white">Youtube</button>
                 </div>
 
                 <div id="tab-add-text" class="">
                     <div class="p-2">
                         <div class="font-bold py-2">제목:</div>
-                        <input type="text" class="p-1 w-full border border-black" required/>
+                        <input type="text" class="p-1 w-full border border-black rounded-xl" required/>
                     </div>
                     <div class="p-2">
                         <div class="font-bold py-2">내용:</div>
-                        <textarea placeholder=" text" class="border border-black h-40 w-full p-1" minlength="10" maxlength="2000" required></textarea>
+                        <textarea placeholder=" text" class="border border-black h-40 w-full p-1 rounded-xl" minlength="10" maxlength="2000" required></textarea>
                     </div>
                 </div>
 
@@ -209,11 +209,11 @@
                 <div id="tab-add-youtube" class="hidden">
                     <div class="p-2">
                         <div class="font-bold py-2">제목:</div>
-                        <input type="text" class="p-1 w-full border border-black" required/>
+                        <input type="text" class="p-1 w-full border border-black rounded-xl" required/>
                     </div>
                     <div class="p-2">
                         <div class="font-bold py-2">Youtube 링크:</div>
-                        <input type="text" placeholder="link" class="border border-black w-full p-1" minlength="10" maxlength="200" required/>
+                        <input type="text" placeholder="link" class="border border-black w-full p-1 rounded-xl" minlength="10" maxlength="200" required/>
                     </div>
                 </div>
 
@@ -221,7 +221,7 @@
             
 
             <div class="flex justify-center items-center">
-                <button id="add-complete" class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">자료 추가</button>
+                <button id="add-complete" class="px-16 py-1 border border-hidden rounded-3xl text-white color-green hover:bg-green-800">자료 추가</button>
             </div>
             <div id="loading" class="hidden">
                 <button type="button" class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
@@ -269,20 +269,20 @@
                 <div class="p-2 font-bold">발표에서 배운 점</div>
                 <div class="p-2">
                     <p class="p-2">Q1 힘들었던 점이 있다면 무엇이었나요?</p>
-                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-xl w-full"></textarea>
                 </div>
                 <div class="p-2">
                     <p class="p-2">Q2 좋았던 점이 있다면 무엇이었나요?</p>
-                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-xl w-full"></textarea>
                 </div>
                 <div class="p-2">
                     <p class="p-2">Q3 새롭게 배운 점이 있다면 무엇이었나요?</p>
-                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-3xl w-full"></textarea>
+                    <textarea type="text" placeholder=" 내용" class="p-2 border border-gray-500 rounded-xl w-full"></textarea>
                 </div>
             </div>
 
             <div class="flex justify-center items-center">
-                <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">회고 저장</button>
+                <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green hover:bg-green-800">회고 저장</button>
             </div>
         </div>
     </div>        
@@ -313,17 +313,17 @@
             <div>
                 <div class="p-2 font-bold">요약</div>
                 <div class="p-2">
-                    <p id="view-summary" class="p-2 border border-gray-500 rounded-3xl w-ful min-h-10 leading-relaxed"></p>
+                    <p id="view-summary" class="p-2 border border-gray-500 rounded-xl w-ful min-h-10 leading-relaxed"></p>
                 </div>
 
                 <div class="p-2 font-bold">내용</div>
                 <div class="p-2">
-                    <p id="view-text" class="p-2 border border-gray-500 rounded-3xl w-full min-h-10 leading-relaxed"></p>
+                    <p id="view-text" class="p-2 border border-gray-500 rounded-xl w-full min-h-10 leading-relaxed"></p>
                 </div>
             </div>
 
             <div class="flex justify-center items-center">
-                <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green">수정 완료</button>
+                <button class="px-16 py-1 border border-hidden rounded-3xl text-white color-green hover:bg-green-800">수정 완료</button>
             </div>
         </div>
     </div>        

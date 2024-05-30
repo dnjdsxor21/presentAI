@@ -3,7 +3,7 @@
 {% block navbar %} 
 <nav id="nav-bar" class="fixed color-silver fixed w-24 h-screen z-10 md:w-32">
     <div class="flex flex-col justify-start items-center gap-6">
-        <div class="mt-10">
+        <div class="nav-btn mt-10">
             <a href="/projects">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -98,7 +98,7 @@
         <div class="flex flex-col gap-1.5 h-screen overflow-auto">
 
             <div class="m-2 text-l flex items-center justify-between">
-                <div>추천 공공데이터({{recommended|length}}개)</div>
+                <div class="m-3 font-bold text-3xl">추천 공공데이터 <span class="text-2xl">({{recommended|length}})</span></div>
             </div>
 
             <table class="">

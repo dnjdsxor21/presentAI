@@ -93,7 +93,7 @@
 
 
         <div id="nav-calender" class="border border-white rounded-lg p-2 min-x-[300px]">
-            <div id="calendar-month-year" class="font-bold text-2xl text-right px-4"></div>
+            <div id="calendar-month-year" class="font-bold text-2xl text-right px-4 py-2"></div>
             <div class="flex flex-nowrap justify-evenly overflow-hidden w-fit-content">
                 <div class="border border-hidden rounded-full p-1 text-center w-12 aspect-square">
                     <p>일</p>
@@ -173,7 +173,7 @@
                     <p class="p-2 text-2xl font-bold">완료한 프로젝트 회고 남기기</p>
                     <div class="flex flex-col gap-2">
                         {%for project in projects[:2] %}
-                        <div class="border rounded-2xl color-silver p-3">
+                        <div class="border rounded-2xl color-silver p-3 hover:bg-gray-300">
                             <a href="/projects/{{project.id}}">{{project.name}}</a>
                         </div>
                         {% endfor %}

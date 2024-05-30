@@ -16,12 +16,13 @@
 }
 
 #nav-bar .nav-btn {
-    width: 33%;
+    width: 42px;
     border: solid rgb(241 245 249) 0.5px;
     border-radius: 15px;
     aspect-ratio: 1/1;
     padding: 3px;
 }
+
 
 #nav-bar a {
     width:100%;

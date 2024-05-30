@@ -27,7 +27,7 @@ async def projects_list(request: Request):
     return templates.TemplateResponse("projects.html", {"request": request, "projects":projects})
 
 @app.post("/projects/new")
-async def new_project(request: Request, name:str="", topic:str="", opinion:str="opinion", keywords:str="goal"):
+async def new_project(request: Request, name:str="", topic:str="", opinion:str="의견", keywords:str="키워드"):
     if (name.strip()!="") and (topic.strip()!=""):
         # data insert
         completion = gpt35(

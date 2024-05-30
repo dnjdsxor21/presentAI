@@ -3,7 +3,7 @@
 {% block navbar %} 
 <nav id="nav-bar" class="fixed color-silver fixed w-24 h-screen z-10 md:w-32">
     <div class="flex flex-col justify-start items-center gap-6">
-        <div class="mt-10">
+        <div class="nav-btn mt-10">
             <a href="/projects">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
@@ -103,21 +103,21 @@
     <div class="m-3 font-bold text-3xl">Settings</div>
         <div class="bg-white min-w-xl max-w-5xl h-[90%] overflow-y-scroll">
             <div class="p-5 flex flex-col gap-5 items-center">
-                <div class="text-3xl font-bold text-center pb-5">My project</div>
-                <div id="data-form" class="w-[95%] h-full color-silver border border-black">
+                <div class="text-3xl font-bold text-center pb-5">내 프로젝트</div>
+                <div id="data-form" class="w-[95%] h-full color-silver border border-black rounded-xl">
                     <div class="p-2">
-                        <div>프로젝트 이름:</div>
-                        <input type="text" required minlength="1" class="w-full p-1 border border-black cursor-not-allowed" disabled=""
+                        <div class="p-1">프로젝트 이름:</div>
+                        <input type="text" required minlength="1" class="w-full p-1 border border-black cursor-not-allowed rounded-xl" disabled=""
                         value="{{project.name}}"/>
                     </div>
                     <div class="p-2">
-                        <div>프로젝트 주제:</div>
-                        <input type="text" required minlength="1" class="w-full p-1 border border-black"
+                        <div class="p-1">프로젝트 주제:</div>
+                        <input type="text" required minlength="1" class="w-full p-1 border border-black rounded-xl"
                         value="{{project.topic}}"/>
                     </div>
                     <div class="p-2">
-                        <div>주제에 대한 내 의견:</div>
-                        <textarea type="text" class="w-full h-20 p-1 border border-black">{{project.opinion}}</textarea>
+                        <div class="p-1">나의 의견:</div>
+                        <textarea type="text" class="w-full h-20 p-1 border border-black rounded-xl">{{project.opinion}}</textarea>
                     </div>
                     <!-- <div class="p-2">
                         <div>구체적인 목표:</div>
@@ -126,9 +126,9 @@
                 </div>
                 
 
-                <div class="flex justify-evenly items-center">
-                    <button id='edit' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-green">프로젝트 수정</button>
-                    <button id='delete' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-red">프로젝트 삭제</button>
+                <div class="flex justify-evenly items-center gap-2">
+                    <button id='edit' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-green hover:bg-green-800">프로젝트 수정</button>
+                    <button id='delete' class="min-w-48 py-1 border border-hidden rounded-3xl text-white color-red hover:bg-red-500 cursor-not-allowed">프로젝트 삭제</button>
                 </div>
             </div>
         </div>        
